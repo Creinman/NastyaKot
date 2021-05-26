@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>105M</title>
+    <style>
+        html {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #666;
+        }
+        table {
+            font-family:Arial, Helvetica, sans-serif;
+            color:#666;
+            font-size:12px;
+            text-shadow: 1px 1px 0px #fff;
+            background:#eaebec;
+            margin:20px;
+            border:#ccc 1px solid;
+            border-collapse:separate;
+        
+            -moz-border-radius:3px;
+            -webkit-border-radius:3px;
+            border-radius:3px;
+        
+            -moz-box-shadow: 0 1px 2px #d1d1d1;
+            -webkit-box-shadow: 0 1px 2px #d1d1d1;
+            box-shadow: 0 1px 2px #d1d1d1;   
+        }
+        tr:first-child th:first-child{
+	        -moz-border-radius-topleft:3px;
+	        -webkit-border-top-left-radius:3px;
+	        border-top-left-radius:3px;
+        }
+        tr:first-child th:last-child{
+            -moz-border-radius-topright:3px;
+            -webkit-border-top-right-radius:3px;
+            border-top-right-radius:3px;
+        }
+        tr td:first-child{
+	        border-left: 0;
+        }
+        tr:last-child td{
+	        border-bottom:0;
+        }
+        .th {
+            text-align: center; 
+            vertical-align: middle;
+            font-weight:bold;
+            padding:21px 25px 22px 25px;
+            border-top:1px solid #fafafa;
+            border-bottom:1px solid #e0e0e0;
+ 
+            background: #ededed;
+            background: -webkit-gradient(linear, left top, left bottom, from(#ededed), to(#ebebeb));
+            background: -moz-linear-gradient(top,  #ededed,  #ebebeb);
+        }
+        .th.bool {
+            
+            width: 20px;
+        }
+        .th.textfield {
+            
+            width: 200px;
+        } 
+        .td {
+            text-align: center; 
+            vertical-align: middle;
+            padding:18px;
+            border-top: 1px solid #ffffff;
+            border-bottom:1px solid #e0e0e0;
+            border-left: 1px solid #e0e0e0;
+
+            background: #fafafa;
+            background: -webkit-gradient(linear, left top, left bottom, from(#fbfbfb), to(#fafafa));
+            background: -moz-linear-gradient(top,  #fbfbfb,  #fafafa);
+        }
+        .td.bool {
+            width: 20px;
+        }
+        .td.textfield {
+            
+            width: 200px;
+        }
+        
+        tr:last-child td:first-child{
+            -moz-border-radius-bottomleft:3px;
+            -webkit-border-bottom-left-radius:3px;
+            border-bottom-left-radius:3px;
+        }
+        tr:last-child td:last-child{
+            -moz-border-radius-bottomright:3px;
+            -webkit-border-bottom-right-radius:3px;
+            border-bottom-right-radius:3px;
+        }
+        label {
+            display: inline-block;
+            width: 95px;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+        .button {
+            border: none;
+            outline: none;
+            display: inline-block;
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;
+            font-size: 14px;
+            font-family: Roboto, Verdana, Tahoma, sans;
+            padding: 9px 12px;
+            border-radius: 100px;
+            color: #fff;
+        }
+        .button.green {
+            margin-bottom: 10px;
+            background-color: #64CE44;
+        }
+        .button.red {
+            margin-bottom: 10px;
+            background-color: #CE2B2B;
+        }
+        .button:hover.green {
+            background: #40842C;
+        }
+        .button:hover.red {
+            background-color: #911E1E;
+        }
+        .button:active {
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+        }
+    
+        caption {
+            font-size: 35px;
+            font-weight: bold;
+        }
+        input.text:focus {
+            box-shadow: darkslateblue;
+            border: 1px solid #39c; /* Рамка при получении фокуса */
+        }
+        
+        
+    </style>
+</head>
+<body>
+    
+    <h1 style="font: 'Arial Narrow Bold'; font-size: 40px;">Расписание занятий</h1>
+
+    <div>
+        
+        <div>
+            <p> <label for="InputDayOfWeek">День недели:</label>
+                <select size="3" multiple name="day[]" id = "InputDayOfWeek" class="InputDayOfWeek">
+                    <option disabled>Выберите день недели</option>
+                    <option selected value="Понедельник">Понедельник</option>
+                    <option value="Вторник">Вторник</option>
+                    <option value="Среда">Среда</option>
+                    <option value="Четверг">Четверг</option>
+                    <option value="Пятница">Пятница</option>
+                    <option value="Суббота">Суббота</option>
+                   </select>
+                <label for="InputTime">Время:</label><input type="time" size="20" id = "InputTime" class="InputTime" placeholder="18:15"></p>
+        </div> 
+        
+        <div>    
+        <p><label for="InputTask">Название предмета:</label><input type="text" size="20" id="InputTask" class="InputTask" placeholder="Современная теория оптимального управления"></p>
+        </div>   
+    </div>
+    
+    <div>
+    <table id = "dataTable" style="border-collapse: collapse;">
+        <div><caption>Занятия</caption></div>
+        <div>
+            <caption style="text-align: left">
+                <input type="button" value=" Добавить в расписание " class="button green" onclick="addRow('dataTable')"/>
+                <input type="button" value=" Удалить выделенные " class="button red" onclick="removeRows('dataTable')"/>
+            </caption>
+        </div>
+        <tr>
+            <th class="th bool"></th>
+            <th class="th textfield">День недели</th>
+            <th class="th textfield">Время</th>
+            <th class="th textfield">Предмет</th></th>
+        </tr>
+        <tr>
+            <td class="td bool"><input type="checkbox"></td>
+            <td class="td textfield">Вторник</td>
+            <td class="td textfield">17:00</td>
+            <td class="td textfield">Английский</td>
+            </td>
+        </tr>
+        <tr>
+            <td class="td bool"><input type="checkbox"></td>
+            <td class="td textfield">Вторник</td>
+            <td class="td textfield">20:00</td>
+            <td class="td textfield">Управление разработкой и аналитика IT-продуктов</td>
+            </td>
+        </tr>
+        <tr>
+            <td class="td bool"><input type="checkbox"></td>
+            <td class="td textfield">Среда</td>
+            <td class="td textfield">16:30</td>
+            <td class="td textfield">WEB-технологии разработки прикладных программных систем</td>
+        </tr>
+        <tr>
+            <td class="td bool"><input type="checkbox"></td>
+            <td class="td textfield">Четверг</td>
+            <td class="td textfield">18:15</td>
+            <td class="td textfield">Интеллектуальная обработка текстов</td>
+        </tr>
+    </table>
+    </div>
+    <script>
+
+        const InputDayOfWeek = document.querySelector('.InputDayOfWeek');
+        const InputTime = document.querySelector('.InputTime');
+        const InputTask = document.querySelector('.InputTask');
+
+        const table = document.querySelector('table');
+        table.onclick = (event) => {
+            let cell = event.target;
+            if (cell.tagName.toLowerCase() != 'td')
+                cell = cell.parentNode;
+                if (cell.tagName.toLowerCase() != 'td') 
+                    return;
+            let i = cell.parentNode.rowIndex;
+            let j = cell.cellIndex;
+            console.log(i, j)
+            if (j === 4){
+                row = table.rows[i];
+                var Cells = row.getElementsByTagName("td");
+                        }
+            
+
+        }
+
+        function addRow(tableID) {
+            
+            
+            AddedDayOfWeek = InputDayOfWeek.value;
+            AddedTime = InputTime.value;
+            AddedTask = InputTask.value;
+
+            
+
+            var table = document.getElementById(tableID);
+
+			var rowCount = table.rows.length;
+			var row = table.insertRow(rowCount);
+
+            var cell0 = row.insertCell(0);
+			var element1 = document.createElement("input");
+			element1.type = "checkbox";
+			element1.name="chkbox[]";
+            element1.name="checkboxcolor[]";
+			cell0.appendChild(element1);
+            cell0.className = "td bool"; 
+            
+			var cell1 = row.insertCell(1);
+			var newText = document.createTextNode(AddedDayOfWeek);
+			cell1.appendChild(newText);
+            cell1.className = "td textfield";
+
+			var cell2 = row.insertCell(2);
+			var newText = document.createTextNode(AddedTime);
+			cell2.appendChild(newText);
+            cell2.className = "td textfield";
+
+			var cell3 = row.insertCell(3);
+			var newText = document.createTextNode(AddedTask);
+			cell3.appendChild(newText);
+            cell3.className = "td textfield";
+            
+        }
+
+        function removeRows(tableID) {
+            var table = document.getElementById(tableID);
+
+            var rowCount = table.rows.length;
+
+			for(var i=0; i<rowCount; i++) {
+				var row = table.rows[i];
+				var chkbox = row.cells[0].childNodes[0];
+				if(null != chkbox && true == chkbox.checked) {
+					table.deleteRow(i);
+					rowCount--;
+					i--;
+				}
+			}
+        }
+
+        var tr = document.getElementsByTagName("tr"),
+            i = tr.length;
+
+        while (i--) {
+            tr[i].onclick = clickTr;
+        }
+
+        function clickTr(event) {
+            var inputs = this.getElementsByTagName('input');
+            for (var x = 0; x < inputs.length; x++) {
+                if (inputs[x] !== event.target && inputs[x].type == 'checkbox') {
+                    inputs[x].checked = !(inputs[x].checked);
+                }
+            }
+        }
+
+        
+
+    </script>
+
+    
+    
+    
+</body>
+</html>
