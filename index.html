@@ -145,7 +145,10 @@
     </style>
 </head>
 <body>
-    
+    <script type="text/javascript">
+  function test() {if (confirm("Are you sure to delete one FOREVER?"))
+	{ removeRows('dataTable')} }
+</script>
     <h1 style="font: 'Arial Narrow Bold'; font-size: 40px;">Расписание занятий</h1>
 
     <div>
@@ -175,7 +178,8 @@
         <div>
             <caption style="text-align: left">
                 <input type="button" value=" Добавить в расписание " class="button green" onclick="addRow('dataTable')"/>
-                <input type="button" value=" Удалить выделенные " class="button red" onclick="alert(' are you sure to delete yout computer FOREVER?') removeRows('dataTable')"/>
+                <input type="button" value=" Удалить выделенные " class="button red" onclick="test()" />
+                <!-- alert(' are you sure to delete yout computer FOREVER?'), removeRows('dataTable')"-->
             </caption>
         </div>
         <tr>
